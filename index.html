@@ -12,14 +12,14 @@
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
         :root {
-            --dark:       #111111;
-            --dark-2:     #1C1C1C;
-            --dark-3:     #2A2A2A;
-            --accent:     #FF6B35;
+            --dark:       #0F172A;
+            --dark-2:     #162033;
+            --dark-3:     #24324A;
+            --accent:     #2563EB;
             --white:      #FFFFFF;
-            --off-white:  #F6F6F6;
-            --gray:       #666666;
-            --light-gray: #E5E5E5;
+            --off-white:  #F8FAFC;
+            --gray:       #64748B;
+            --light-gray: #E2E8F0;
             --font-logo:  'Barlow Condensed', 'Arial Narrow', Arial, sans-serif;
             --font-body:  'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
         }
@@ -86,7 +86,7 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: radial-gradient(ellipse at 65% 50%, rgba(255,107,53,0.09) 0%, transparent 65%);
+            background: radial-gradient(ellipse at 65% 50%, rgba(37,99,235,0.12) 0%, transparent 65%);
             pointer-events: none;
         }
 
@@ -97,7 +97,7 @@
             letter-spacing: 0.25em;
             text-transform: uppercase;
             color: var(--accent);
-            border: 1px solid rgba(255,107,53,0.4);
+            border: 1px solid rgba(37,99,235,0.4);
             padding: 0.25rem 0.8rem;
             border-radius: 2px;
             margin-bottom: 0.9rem;
@@ -242,10 +242,29 @@
 
         .card:hover .card-icon { background: var(--accent); color: var(--white); }
 
+        .card-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 0.4rem;
+        }
+
         .card-tag {
             font-size: 0.63rem; font-weight: 600;
             letter-spacing: 0.18em; text-transform: uppercase;
-            color: var(--accent); margin-bottom: 0.4rem;
+            color: var(--accent); margin-bottom: 0;
+        }
+
+        .dev-tag {
+            font-size: 0.56rem;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--white);
+            background: var(--accent);
+            padding: 0.2rem 0.45rem;
+            border-radius: 2px;
         }
 
         .card h2 {
@@ -310,7 +329,7 @@
             transition: border-color 0.2s, box-shadow 0.2s;
         }
 
-        .stat-box:hover { border-color: var(--accent); box-shadow: 0 4px 16px rgba(255,107,53,0.08); }
+        .stat-box:hover { border-color: var(--accent); box-shadow: 0 4px 16px rgba(37,99,235,0.12); }
 
         .stat-num {
             font-family: var(--font-logo); font-size: 1.7rem;
@@ -452,7 +471,10 @@
 
                 <div class="card">
                     <div class="card-icon"><i class="fa-solid fa-comments"></i></div>
-                    <div class="card-tag">Knowledge Base</div>
+                    <div class="card-meta">
+                        <div class="card-tag">Knowledge Base</div>
+                        <span class="dev-tag">Under Development</span>
+                    </div>
                     <h2>Ask</h2>
                     <p>Interactive engineering assistant for quick project queries, standards checks, and knowledge support.</p>
                     <a href="https://cromptonconcepts.github.io/Ask/" class="btn" target="_blank" rel="noopener">
@@ -462,7 +484,10 @@
 
                 <div class="card">
                     <div class="card-icon"><i class="fa-solid fa-road"></i></div>
-                    <div class="card-tag">Traffic Management</div>
+                    <div class="card-meta">
+                        <div class="card-tag">Traffic Management</div>
+                        <span class="dev-tag">Under Development</span>
+                    </div>
                     <h2>TMP Generator</h2>
                     <p>Tool for preparing traffic management planning outputs and generating streamlined documentation.</p>
                     <a href="https://cromptonconcepts.github.io/TMP_Generator/" class="btn" target="_blank" rel="noopener">
@@ -472,7 +497,10 @@
 
                 <div class="card">
                     <div class="card-icon"><i class="fa-solid fa-scale-balanced"></i></div>
-                    <div class="card-tag">Assessment Tools</div>
+                    <div class="card-meta">
+                        <div class="card-tag">Assessment Tools</div>
+                        <span class="dev-tag">Under Development</span>
+                    </div>
                     <h2>Option Analysis</h2>
                     <p>Structured comparison tool to assess alternatives and support transparent engineering decisions.</p>
                     <a href="https://cromptonconcepts.github.io/Option_Analysis/" class="btn" target="_blank" rel="noopener">
@@ -604,7 +632,7 @@
     <footer>
         &copy; 2026 <strong>Crompton Concepts</strong>
         <span class="footer-dot">&bull;</span>
-        Sanju Bhandari, RPEQ 36844
+        Sanju Bhandari
     </footer>
 
     <script>
