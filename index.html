@@ -1,0 +1,592 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crompton Concepts â€” Engineering Applications</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --dark:       #111111;
+            --dark-2:     #1C1C1C;
+            --dark-3:     #2A2A2A;
+            --accent:     #FF6B35;
+            --white:      #FFFFFF;
+            --off-white:  #F6F6F6;
+            --gray:       #666666;
+            --light-gray: #E5E5E5;
+            --font-logo:  'Barlow Condensed', 'Arial Narrow', Arial, sans-serif;
+            --font-body:  'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--off-white);
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* â”€â”€ NAV â”€â”€ */
+        nav {
+            background: var(--dark);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 0 2.5rem;
+            display: flex;
+            align-items: center;
+            height: 64px;
+            border-bottom: 1px solid var(--dark-3);
+        }
+
+        .logo {
+            display: flex;
+            flex-direction: column;
+            line-height: 1;
+            gap: 2px;
+        }
+
+        .logo-name {
+            font-family: var(--font-logo);
+            font-weight: 900;
+            font-size: 1.9rem;
+            color: var(--white);
+            letter-spacing: -0.5px;
+        }
+
+        .logo-dot { color: var(--accent); }
+
+        .logo-tagline {
+            font-family: var(--font-logo);
+            font-weight: 400;
+            font-size: 0.58rem;
+            color: rgba(255,255,255,0.45);
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+        }
+
+        /* â”€â”€ HERO (compact) â”€â”€ */
+        .hero {
+            background: var(--dark);
+            color: var(--white);
+            padding: 2.5rem 2rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 65% 50%, rgba(255,107,53,0.09) 0%, transparent 65%);
+            pointer-events: none;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--accent);
+            border: 1px solid rgba(255,107,53,0.4);
+            padding: 0.25rem 0.8rem;
+            border-radius: 2px;
+            margin-bottom: 0.9rem;
+        }
+
+        .hero h1 {
+            font-family: var(--font-logo);
+            font-weight: 900;
+            font-size: clamp(2rem, 4.5vw, 3.2rem);
+            line-height: 0.95;
+            letter-spacing: -1px;
+            margin-bottom: 0.75rem;
+        }
+
+        .hero h1 em { font-style: normal; color: var(--accent); }
+
+        .hero-sub {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.45);
+            max-width: 400px;
+            margin: 0 auto;
+            line-height: 1.7;
+            font-weight: 300;
+        }
+
+        /* â”€â”€ TAB BAR â”€â”€ */
+        .tab-bar {
+            background: var(--dark);
+            border-bottom: 1px solid var(--dark-3);
+            display: flex;
+            justify-content: center;
+            gap: 0;
+            padding: 0 2.5rem;
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            color: rgba(255,255,255,0.45);
+            font-family: var(--font-body);
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            padding: 0.85rem 1.75rem;
+            cursor: pointer;
+            position: relative;
+            transition: color 0.2s;
+        }
+
+        .tab-btn::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 2px;
+            background: var(--accent);
+            transform: scaleX(0);
+            transition: transform 0.25s ease;
+        }
+
+        .tab-btn.active { color: var(--white); }
+        .tab-btn.active::after { transform: scaleX(1); }
+        .tab-btn:hover { color: rgba(255,255,255,0.8); }
+
+        /* â”€â”€ TAB PANELS â”€â”€ */
+        .tab-panel { display: none; }
+        .tab-panel.active { display: block; }
+
+        /* â”€â”€ SHARED SECTION WRAPPER â”€â”€ */
+        .section-wrap {
+            max-width: 1200px;
+            width: 90%;
+            margin: 0 auto;
+            padding: 3.5rem 0 5rem;
+            flex: 1;
+        }
+
+        .section-label {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-family: var(--font-logo);
+            font-weight: 700;
+            font-size: 0.72rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: #999;
+            margin-bottom: 2rem;
+        }
+
+        .section-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--light-gray);
+        }
+
+        /* â”€â”€ CARDS â”€â”€ */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            background: var(--white);
+            border-radius: 4px;
+            padding: 2rem 2rem 1.75rem;
+            border: 1px solid #E8E8E8;
+            display: flex;
+            flex-direction: column;
+            transition: box-shadow 0.3s, transform 0.3s, border-color 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 3px;
+            background: var(--accent);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.35s ease;
+        }
+
+        .card:hover { box-shadow: 0 16px 48px rgba(0,0,0,0.1); transform: translateY(-5px); border-color: transparent; }
+        .card:hover::after { transform: scaleX(1); }
+
+        .card-icon {
+            width: 46px; height: 46px;
+            background: var(--off-white);
+            border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--dark);
+            font-size: 1.15rem;
+            margin-bottom: 1.25rem;
+            transition: background 0.3s, color 0.3s;
+            flex-shrink: 0;
+        }
+
+        .card:hover .card-icon { background: var(--accent); color: var(--white); }
+
+        .card-tag {
+            font-size: 0.63rem; font-weight: 600;
+            letter-spacing: 0.18em; text-transform: uppercase;
+            color: var(--accent); margin-bottom: 0.4rem;
+        }
+
+        .card h2 {
+            font-family: var(--font-logo);
+            font-size: 1.4rem; font-weight: 800;
+            color: var(--dark); margin-bottom: 0.65rem;
+            letter-spacing: -0.2px; line-height: 1.15;
+        }
+
+        .card p { color: var(--gray); font-size: 0.86rem; line-height: 1.7; flex: 1; }
+
+        .btn {
+            display: flex; align-items: center; justify-content: center;
+            gap: 0.5rem;
+            background: var(--dark); color: var(--white);
+            text-decoration: none;
+            padding: 0.7rem 1.25rem;
+            border-radius: 3px;
+            font-size: 0.75rem; font-weight: 600;
+            letter-spacing: 0.1em; text-transform: uppercase;
+            margin-top: 1.5rem;
+            transition: background 0.2s, gap 0.25s;
+            flex-shrink: 0;
+        }
+
+        .btn:hover { background: var(--accent); gap: 0.8rem; }
+
+        /* â”€â”€ ABOUT / PROFILE â”€â”€ */
+        .profile-grid {
+            display: grid;
+            grid-template-columns: 240px 1fr;
+            gap: 3.5rem;
+            align-items: start;
+        }
+
+        .profile-left { display: flex; flex-direction: column; gap: 1.5rem; }
+
+        .avatar-wrap {
+            width: 100%; aspect-ratio: 1;
+            background: var(--dark); border-radius: 6px;
+            display: flex; align-items: center; justify-content: center;
+            position: relative; overflow: hidden;
+        }
+
+        .avatar-initials {
+            font-family: var(--font-logo); font-weight: 900;
+            font-size: 5rem; color: var(--white);
+            letter-spacing: -2px; user-select: none;
+        }
+
+        .avatar-accent {
+            position: absolute; bottom: 0; left: 0; right: 0;
+            height: 5px; background: var(--accent);
+        }
+
+        .stats-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+
+        .stat-box {
+            background: var(--white); border: 1px solid #E8E8E8;
+            border-radius: 4px; padding: 0.9rem 0.75rem;
+            text-align: center;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .stat-box:hover { border-color: var(--accent); box-shadow: 0 4px 16px rgba(255,107,53,0.08); }
+
+        .stat-num {
+            font-family: var(--font-logo); font-size: 1.7rem;
+            font-weight: 900; color: var(--dark); line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 0.65rem; font-weight: 600;
+            letter-spacing: 0.12em; text-transform: uppercase;
+            color: #999; margin-top: 0.25rem;
+        }
+
+        .profile-right { display: flex; flex-direction: column; gap: 2rem; }
+
+        .profile-name {
+            font-family: var(--font-logo); font-weight: 900;
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: var(--dark); line-height: 1; letter-spacing: -1px;
+        }
+
+        .profile-title {
+            font-size: 0.78rem; font-weight: 600;
+            letter-spacing: 0.18em; text-transform: uppercase;
+            color: var(--accent); margin-top: 0.5rem;
+        }
+
+        .credential-badge {
+            display: inline-flex; align-items: center; gap: 0.45rem;
+            background: var(--dark); color: rgba(255,255,255,0.75);
+            font-size: 0.72rem; font-weight: 500;
+            letter-spacing: 0.08em;
+            padding: 0.35rem 0.8rem; border-radius: 3px; margin-top: 0.75rem;
+        }
+
+        .credential-badge i { color: var(--accent); }
+
+        .bio {
+            font-size: 0.9rem; line-height: 1.85; color: #555;
+            border-left: 3px solid var(--accent);
+            padding-left: 1.25rem;
+        }
+
+        .skills-block h3,
+        .contact-block h3 {
+            font-family: var(--font-logo); font-size: 0.72rem;
+            font-weight: 700; letter-spacing: 0.22em;
+            text-transform: uppercase; color: #999;
+            margin-bottom: 0.85rem;
+        }
+
+        .skills-wrap { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+
+        .skill-chip {
+            font-size: 0.73rem; font-weight: 500;
+            background: var(--white); border: 1px solid #E0E0E0;
+            color: #444; padding: 0.3rem 0.75rem; border-radius: 3px;
+            transition: background 0.2s, color 0.2s, border-color 0.2s;
+        }
+
+        .skill-chip:hover { background: var(--dark); color: var(--white); border-color: var(--dark); }
+
+        .contact-links { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+
+        .contact-link {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            text-decoration: none;
+            font-size: 0.78rem; font-weight: 600;
+            letter-spacing: 0.08em; text-transform: uppercase;
+            color: var(--dark); border: 1px solid #D0D0D0;
+            padding: 0.55rem 1rem; border-radius: 3px;
+            transition: background 0.2s, color 0.2s, border-color 0.2s, gap 0.2s;
+        }
+
+        .contact-link:hover { background: var(--accent); color: var(--white); border-color: var(--accent); gap: 0.75rem; }
+
+        /* â”€â”€ FOOTER â”€â”€ */
+        footer {
+            background: var(--dark);
+            color: rgba(255,255,255,0.3);
+            text-align: center;
+            padding: 1.5rem 2rem;
+            font-size: 0.78rem;
+            letter-spacing: 0.06em;
+        }
+
+        footer strong { color: rgba(255,255,255,0.6); font-weight: 500; }
+        footer .footer-dot { margin: 0 0.5rem; opacity: 0.3; }
+
+        /* â”€â”€ RESPONSIVE â”€â”€ */
+        @media (max-width: 820px) {
+            .profile-grid { grid-template-columns: 1fr; }
+            .avatar-wrap { max-width: 180px; }
+        }
+
+        @media (max-width: 640px) {
+            nav { padding: 0 1.25rem; }
+            .section-wrap { width: 92%; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav>
+        <div class="logo">
+            <span class="logo-name">CROMPTON<span class="logo-dot">.</span></span>
+            <span class="logo-tagline">Deliberately Different</span>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-badge">Engineering Solutions</div>
+        <h1>Civil &amp; Traffic<br><em>Engineering Apps</em></h1>
+        <p class="hero-sub">Purpose-built tools to accelerate assessments, automate reports, and streamline project delivery.</p>
+    </section>
+
+    <!-- TAB BAR -->
+    <div class="tab-bar">
+        <button class="tab-btn active" data-tab="apps">Applications</button>
+        <button class="tab-btn" data-tab="about">About</button>
+    </div>
+
+    <!-- TAB: APPLICATIONS -->
+    <div class="tab-panel active" id="tab-apps">
+        <div class="section-wrap">
+            <div class="section-label">Applications</div>
+            <div class="cards-grid">
+
+                <div class="card">
+                    <div class="card-icon"><i class="fa-solid fa-chart-line"></i></div>
+                    <div class="card-tag">Traffic Engineering</div>
+                    <h2>Traffic Impact Assessment</h2>
+                    <p>Comprehensive tool for traffic volume analysis, trip generation, and engineering report automation.</p>
+                    <a href="https://cromptonconcepts.github.io/Cromton-Traffic-Impact-Asssessment/" class="btn" target="_blank" rel="noopener">
+                        Launch App <i class="fa-solid fa-arrow-right fa-xs"></i>
+                    </a>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                    <div class="card-tag">Safety &amp; Design</div>
+                    <h2>Risk &amp; Barrier Design</h2>
+                    <p>Specialized tool for roadside work safety, risk registers, and concrete barrier (JJ Hooks) design calculations.</p>
+                    <a href="https://cromptonconcepts.github.io/RiskAssessment_Barrier-design/" class="btn" target="_blank" rel="noopener">
+                        Launch App <i class="fa-solid fa-arrow-right fa-xs"></i>
+                    </a>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon"><i class="fa-solid fa-clipboard-check"></i></div>
+                    <div class="card-tag">Quality Assurance</div>
+                    <h2>Review App</h2>
+                    <p>Internal review management system for engineering documentation and quality assurance processes.</p>
+                    <a href="https://cromptonconcepts.github.io/Review_app/" class="btn" target="_blank" rel="noopener">
+                        Launch App <i class="fa-solid fa-arrow-right fa-xs"></i>
+                    </a>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon"><i class="fa-solid fa-comments"></i></div>
+                    <div class="card-tag">Knowledge Base</div>
+                    <h2>Crompton Ask</h2>
+                    <p>Interactive knowledge base and technical query tool for project-specific engineering standards and queries.</p>
+                    <a href="https://cromptonconcepts.github.io/Crompton_Ask/" class="btn" target="_blank" rel="noopener">
+                        Launch App <i class="fa-solid fa-arrow-right fa-xs"></i>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- TAB: ABOUT -->
+    <div class="tab-panel" id="tab-about">
+        <div class="section-wrap">
+            <div class="section-label">About the Developer</div>
+
+            <div class="profile-grid">
+
+                <!-- LEFT -->
+                <div class="profile-left">
+                    <div class="avatar-wrap">
+                        <span class="avatar-initials">SB</span>
+                        <div class="avatar-accent"></div>
+                    </div>
+
+                    <div class="stats-row">
+                        <div class="stat-box">
+                            <div class="stat-num">10+</div>
+                            <div class="stat-label">Years Exp.</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-num">4</div>
+                            <div class="stat-label">Apps Built</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-num">RPEQ</div>
+                            <div class="stat-label">36844</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-num">QLD</div>
+                            <div class="stat-label">Based</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RIGHT -->
+                <div class="profile-right">
+                    <div>
+                        <div class="profile-name">Sanju Bhandari</div>
+                        <div class="profile-title">Civil &amp; Traffic Engineer</div>
+                        <span class="credential-badge">
+                            <i class="fa-solid fa-certificate fa-sm"></i>
+                            RPEQ 36844 &bull; Crompton Concepts
+                        </span>
+                    </div>
+
+                    <p class="bio">
+                        I am a Civil and Traffic Engineer at Crompton Concepts with over a decade of hands-on experience in traffic impact assessment, road safety, and infrastructure design.
+                        Alongside my engineering practice, I design and build all of the applications you see here â€” combining technical rigour with software development
+                        to create purpose-built tools that accelerate assessments, reduce manual effort, and raise the standard of engineering deliverables.
+                    </p>
+
+                    <div class="skills-block">
+                        <h3>Expertise</h3>
+                        <div class="skills-wrap">
+                            <span class="skill-chip">Traffic Impact Assessment</span>
+                            <span class="skill-chip">Road Safety Audits</span>
+                            <span class="skill-chip">Barrier &amp; Safety Design</span>
+                            <span class="skill-chip">SIDRA / VISSIM</span>
+                            <span class="skill-chip">Engineering Report Automation</span>
+                            <span class="skill-chip">Web App Development</span>
+                            <span class="skill-chip">JavaScript / HTML / CSS</span>
+                            <span class="skill-chip">Python</span>
+                            <span class="skill-chip">Quality Assurance</span>
+                        </div>
+                    </div>
+
+                    <div class="contact-block">
+                        <h3>Connect</h3>
+                        <div class="contact-links">
+                            <a href="mailto:er.bhsanju@gmail.com" class="contact-link">
+                                <i class="fa-solid fa-envelope"></i> Email
+                            </a>
+                            <a href="https://www.linkedin.com/in/sanju-bhandari/" class="contact-link" target="_blank" rel="noopener">
+                                <i class="fa-brands fa-linkedin"></i> LinkedIn
+                            </a>
+                            <a href="https://github.com/cromptonconcepts" class="contact-link" target="_blank" rel="noopener">
+                                <i class="fa-brands fa-github"></i> GitHub
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        &copy; 2026 <strong>Crompton Concepts</strong>
+        <span class="footer-dot">&bull;</span>
+        Sanju Bhandari, RPEQ 36844
+    </footer>
+
+    <script>
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+                btn.classList.add('active');
+                document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+            });
+        });
+    </script>
+
+</body>
+</html>
