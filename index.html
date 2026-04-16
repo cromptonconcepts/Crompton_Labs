@@ -12,639 +12,538 @@
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
         :root {
-            --dark:       #0F172A;
-            --dark-2:     #162033;
-            --dark-3:     #24324A;
-            --accent:     #2563EB;
-            --white:      #FFFFFF;
-            --off-white:  #F8FAFC;
-            --gray:       #64748B;
+            --dark: #0F172A;
+            --dark-2: #162033;
+            --accent: #2563EB;
+            --white: #FFFFFF;
+            --off-white: #F8FAFC;
+            --soft: #EFF6FF;
+            --gray: #64748B;
             --light-gray: #E2E8F0;
-            --font-logo:  'Barlow Condensed', 'Arial Narrow', Arial, sans-serif;
-            --font-body:  'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-logo: 'Barlow Condensed', 'Arial Narrow', Arial, sans-serif;
+            --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
         }
+
+        html { scroll-behavior: smooth; }
 
         body {
             font-family: var(--font-body);
             background: var(--off-white);
-            color: #333;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
+            color: var(--dark);
+            line-height: 1.6;
         }
 
-        /* â”€â”€ NAV â”€â”€ */
+        a { color: inherit; }
+
         nav {
-            background: var(--dark);
             position: sticky;
             top: 0;
             z-index: 100;
-            padding: 0 2.5rem;
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            height: 64px;
-            border-bottom: 1px solid var(--dark-3);
+            padding: 1rem 2rem;
+            background: rgba(15, 23, 42, 0.96);
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            backdrop-filter: blur(10px);
         }
 
         .logo {
             display: flex;
             flex-direction: column;
             line-height: 1;
-            gap: 2px;
+            gap: 0.15rem;
         }
 
         .logo-name {
             font-family: var(--font-logo);
+            font-size: 1.75rem;
             font-weight: 900;
-            font-size: 1.9rem;
+            letter-spacing: -0.03em;
             color: var(--white);
-            letter-spacing: -0.5px;
         }
-
-        .logo-dot { color: var(--accent); }
 
         .logo-tagline {
-            font-family: var(--font-logo);
-            font-weight: 400;
-            font-size: 0.58rem;
-            color: rgba(255,255,255,0.45);
+            font-size: 0.62rem;
             letter-spacing: 0.22em;
             text-transform: uppercase;
+            color: rgba(255,255,255,0.55);
         }
 
-        /* â”€â”€ HERO (compact) â”€â”€ */
-        .hero {
-            background: var(--dark);
+        .nav-link {
+            text-decoration: none;
             color: var(--white);
-            padding: 2.5rem 2rem 2rem;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(ellipse at 65% 50%, rgba(37,99,235,0.12) 0%, transparent 65%);
-            pointer-events: none;
-        }
-
-        .hero-badge {
-            display: inline-block;
-            font-size: 0.65rem;
+            border: 1px solid rgba(255,255,255,0.18);
+            padding: 0.55rem 0.9rem;
+            border-radius: 999px;
+            font-size: 0.8rem;
             font-weight: 600;
-            letter-spacing: 0.25em;
-            text-transform: uppercase;
-            color: var(--accent);
-            border: 1px solid rgba(37,99,235,0.4);
-            padding: 0.25rem 0.8rem;
-            border-radius: 2px;
-            margin-bottom: 0.9rem;
         }
+
+        .hero {
+            background: linear-gradient(135deg, var(--dark) 0%, var(--dark-2) 100%);
+            color: var(--white);
+            padding: 4rem 2rem 3rem;
+        }
+
+        .hero-inner,
+        .section-wrap {
+            max-width: 1120px;
+            width: min(92%, 1120px);
+            margin: 0 auto;
+        }
+
+        .hero-inner {
+            display: grid;
+            grid-template-columns: 1.35fr 0.85fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .eyebrow,
+        .section-label {
+            font-family: var(--font-logo);
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+        }
+
+        .eyebrow { color: #93C5FD; margin-bottom: 0.9rem; }
 
         .hero h1 {
             font-family: var(--font-logo);
-            font-weight: 900;
-            font-size: clamp(2rem, 4.5vw, 3.2rem);
-            line-height: 0.95;
-            letter-spacing: -1px;
-            margin-bottom: 0.75rem;
+            font-size: clamp(2.4rem, 5vw, 4rem);
+            line-height: 0.94;
+            letter-spacing: -0.04em;
+            margin-bottom: 1rem;
         }
 
-        .hero h1 em { font-style: normal; color: var(--accent); }
+        .hero h1 span { color: #93C5FD; }
 
-        .hero-sub {
-            font-size: 0.85rem;
-            color: rgba(255,255,255,0.45);
-            max-width: 400px;
-            margin: 0 auto;
-            line-height: 1.7;
-            font-weight: 300;
+        .hero p {
+            max-width: 620px;
+            color: rgba(255,255,255,0.8);
+            font-size: 1rem;
+            margin-bottom: 1.4rem;
         }
 
-        /* â”€â”€ TAB BAR â”€â”€ */
-        .tab-bar {
-            background: var(--dark);
-            border-bottom: 1px solid var(--dark-3);
+        .hero-actions {
             display: flex;
-            justify-content: center;
-            gap: 0;
-            padding: 0 2.5rem;
+            flex-wrap: wrap;
+            gap: 0.8rem;
         }
 
-        .tab-btn {
-            background: none;
-            border: none;
-            color: rgba(255,255,255,0.45);
-            font-family: var(--font-body);
-            font-size: 0.75rem;
-            font-weight: 600;
+        .btn,
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            padding: 0.8rem 1.1rem;
+            border-radius: 10px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+        }
+
+        .btn {
+            background: var(--accent);
+            color: var(--white);
+        }
+
+        .btn-secondary {
+            border: 1px solid rgba(255,255,255,0.2);
+            color: var(--white);
+        }
+
+        .btn:hover,
+        .btn-secondary:hover,
+        .contact-link:hover {
+            transform: translateY(-1px);
+        }
+
+        .hero-panel {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 18px;
+            padding: 1.4rem;
+        }
+
+        .hero-panel h3 {
+            font-size: 0.82rem;
             letter-spacing: 0.14em;
             text-transform: uppercase;
-            padding: 0.85rem 1.75rem;
-            cursor: pointer;
-            position: relative;
-            transition: color 0.2s;
+            color: #93C5FD;
+            margin-bottom: 1rem;
         }
 
-        .tab-btn::after {
-            content: '';
-            position: absolute;
-            bottom: 0; left: 0; right: 0;
-            height: 2px;
-            background: var(--accent);
-            transform: scaleX(0);
-            transition: transform 0.25s ease;
+        .hero-points {
+            display: grid;
+            gap: 0.85rem;
         }
 
-        .tab-btn.active { color: var(--white); }
-        .tab-btn.active::after { transform: scaleX(1); }
-        .tab-btn:hover { color: rgba(255,255,255,0.8); }
+        .hero-point {
+            display: flex;
+            gap: 0.8rem;
+            align-items: flex-start;
+            color: rgba(255,255,255,0.85);
+            font-size: 0.92rem;
+        }
 
-        /* â”€â”€ TAB PANELS â”€â”€ */
-        .tab-panel { display: none; }
-        .tab-panel.active { display: block; }
+        .hero-point i {
+            color: #93C5FD;
+            margin-top: 0.2rem;
+        }
 
-        /* â”€â”€ SHARED SECTION WRAPPER â”€â”€ */
         .section-wrap {
-            max-width: 1200px;
-            width: 90%;
-            margin: 0 auto;
-            padding: 3.5rem 0 5rem;
-            flex: 1;
+            padding: 3rem 0;
         }
 
         .section-label {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
+            color: var(--gray);
+            margin-bottom: 0.35rem;
+        }
+
+        .section-heading {
             font-family: var(--font-logo);
-            font-weight: 700;
-            font-size: 0.72rem;
-            letter-spacing: 0.22em;
-            text-transform: uppercase;
-            color: #999;
-            margin-bottom: 2rem;
+            font-size: clamp(1.8rem, 4vw, 2.6rem);
+            line-height: 1;
+            letter-spacing: -0.03em;
+            margin-bottom: 0.8rem;
         }
 
-        .section-label::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: var(--light-gray);
+        .section-intro {
+            color: var(--gray);
+            max-width: 700px;
+            margin-bottom: 1.75rem;
         }
 
-        /* â”€â”€ CARDS â”€â”€ */
+
         .cards-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
         }
 
         .card {
             background: var(--white);
-            border-radius: 4px;
-            padding: 2rem 2rem 1.75rem;
-            border: 1px solid #E8E8E8;
+            border: 1px solid var(--light-gray);
+            border-radius: 16px;
+            padding: 1.25rem;
             display: flex;
             flex-direction: column;
-            transition: box-shadow 0.3s, transform 0.3s, border-color 0.3s;
-            position: relative;
-            overflow: hidden;
+            gap: 0.8rem;
+            box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
         }
-
-        .card::after {
-            content: '';
-            position: absolute;
-            bottom: 0; left: 0; right: 0;
-            height: 3px;
-            background: var(--accent);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.35s ease;
-        }
-
-        .card:hover { box-shadow: 0 16px 48px rgba(0,0,0,0.1); transform: translateY(-5px); border-color: transparent; }
-        .card:hover::after { transform: scaleX(1); }
 
         .card-icon {
-            width: 46px; height: 46px;
-            background: var(--off-white);
-            border-radius: 8px;
-            display: flex; align-items: center; justify-content: center;
-            color: var(--dark);
-            font-size: 1.15rem;
-            margin-bottom: 1.25rem;
-            transition: background 0.3s, color 0.3s;
-            flex-shrink: 0;
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--soft);
+            color: var(--accent);
+            font-size: 1rem;
         }
-
-        .card:hover .card-icon { background: var(--accent); color: var(--white); }
 
         .card-meta {
             display: flex;
+            justify-content: space-between;
             align-items: center;
             gap: 0.5rem;
             flex-wrap: wrap;
-            margin-bottom: 0.4rem;
+        }
+
+        .card-tag,
+        .dev-tag {
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            border-radius: 999px;
+            padding: 0.25rem 0.55rem;
         }
 
         .card-tag {
-            font-size: 0.63rem; font-weight: 600;
-            letter-spacing: 0.18em; text-transform: uppercase;
-            color: var(--accent); margin-bottom: 0;
+            background: #EFF6FF;
+            color: #1D4ED8;
         }
 
         .dev-tag {
-            font-size: 0.56rem;
-            font-weight: 700;
-            letter-spacing: 0.14em;
-            text-transform: uppercase;
-            color: var(--white);
-            background: var(--accent);
-            padding: 0.2rem 0.45rem;
-            border-radius: 2px;
+            background: #FEF3C7;
+            color: #92400E;
         }
 
         .card h2 {
             font-family: var(--font-logo);
-            font-size: 1.4rem; font-weight: 800;
-            color: var(--dark); margin-bottom: 0.65rem;
-            letter-spacing: -0.2px; line-height: 1.15;
+            font-size: 1.45rem;
+            line-height: 1;
+            letter-spacing: -0.02em;
         }
 
-        .card p { color: var(--gray); font-size: 0.86rem; line-height: 1.7; flex: 1; }
-
-        .btn {
-            display: flex; align-items: center; justify-content: center;
-            gap: 0.5rem;
-            background: var(--dark); color: var(--white);
-            text-decoration: none;
-            padding: 0.7rem 1.25rem;
-            border-radius: 3px;
-            font-size: 0.75rem; font-weight: 600;
-            letter-spacing: 0.1em; text-transform: uppercase;
-            margin-top: 1.5rem;
-            transition: background 0.2s, gap 0.25s;
-            flex-shrink: 0;
+        .card p {
+            color: var(--gray);
+            font-size: 0.92rem;
+            flex: 1;
         }
 
-        .btn:hover { background: var(--accent); gap: 0.8rem; }
-
-        /* â”€â”€ ABOUT / PROFILE â”€â”€ */
-        .profile-grid {
+        .about-grid {
             display: grid;
-            grid-template-columns: 240px 1fr;
-            gap: 3.5rem;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.25rem;
             align-items: start;
         }
 
-        .profile-left { display: flex; flex-direction: column; gap: 1.5rem; }
-
-        .avatar-wrap {
-            width: 100%; aspect-ratio: 1;
-            background: var(--dark); border-radius: 6px;
-            display: flex; align-items: center; justify-content: center;
-            position: relative; overflow: hidden;
+        .about-panel,
+        .contact-panel {
+            background: var(--white);
+            border: 1px solid var(--light-gray);
+            border-radius: 16px;
+            padding: 1.4rem;
         }
-
-        .avatar-initials {
-            font-family: var(--font-logo); font-weight: 900;
-            font-size: 5rem; color: var(--white);
-            letter-spacing: -2px; user-select: none;
-        }
-
-        .avatar-accent {
-            position: absolute; bottom: 0; left: 0; right: 0;
-            height: 5px; background: var(--accent);
-        }
-
-        .stats-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
-
-        .stat-box {
-            background: var(--white); border: 1px solid #E8E8E8;
-            border-radius: 4px; padding: 0.9rem 0.75rem;
-            text-align: center;
-            transition: border-color 0.2s, box-shadow 0.2s;
-        }
-
-        .stat-box:hover { border-color: var(--accent); box-shadow: 0 4px 16px rgba(37,99,235,0.12); }
-
-        .stat-num {
-            font-family: var(--font-logo); font-size: 1.7rem;
-            font-weight: 900; color: var(--dark); line-height: 1;
-        }
-
-        .stat-label {
-            font-size: 0.65rem; font-weight: 600;
-            letter-spacing: 0.12em; text-transform: uppercase;
-            color: #999; margin-top: 0.25rem;
-        }
-
-        .profile-right { display: flex; flex-direction: column; gap: 2rem; }
 
         .profile-name {
-            font-family: var(--font-logo); font-weight: 900;
-            font-size: clamp(2rem, 4vw, 3rem);
-            color: var(--dark); line-height: 1; letter-spacing: -1px;
+            font-family: var(--font-logo);
+            font-size: 2.2rem;
+            line-height: 1;
+            letter-spacing: -0.03em;
+            margin-bottom: 0.35rem;
         }
 
         .profile-title {
-            font-size: 0.78rem; font-weight: 600;
-            letter-spacing: 0.18em; text-transform: uppercase;
-            color: var(--accent); margin-top: 0.5rem;
+            color: var(--accent);
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            margin-bottom: 0.9rem;
         }
 
         .credential-badge {
-            display: inline-flex; align-items: center; gap: 0.45rem;
-            background: var(--dark); color: rgba(255,255,255,0.75);
-            font-size: 0.72rem; font-weight: 500;
-            letter-spacing: 0.08em;
-            padding: 0.35rem 0.8rem; border-radius: 3px; margin-top: 0.75rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            background: var(--soft);
+            color: var(--dark);
+            border-radius: 999px;
+            padding: 0.45rem 0.8rem;
+            font-size: 0.78rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
         }
-
-        .credential-badge i { color: var(--accent); }
 
         .bio {
-            font-size: 0.9rem; line-height: 1.85; color: #555;
-            border-left: 3px solid var(--accent);
-            padding-left: 1.25rem;
+            color: #475569;
+            margin-bottom: 1rem;
         }
 
-        .skills-block h3,
-        .contact-block h3 {
-            font-family: var(--font-logo); font-size: 0.72rem;
-            font-weight: 700; letter-spacing: 0.22em;
-            text-transform: uppercase; color: #999;
-            margin-bottom: 0.85rem;
+        .skills-wrap,
+        .contact-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
         }
-
-        .skills-wrap { display: flex; flex-wrap: wrap; gap: 0.5rem; }
 
         .skill-chip {
-            font-size: 0.73rem; font-weight: 500;
-            background: var(--white); border: 1px solid #E0E0E0;
-            color: #444; padding: 0.3rem 0.75rem; border-radius: 3px;
-            transition: background 0.2s, color 0.2s, border-color 0.2s;
+            background: #F8FAFC;
+            border: 1px solid var(--light-gray);
+            border-radius: 999px;
+            padding: 0.4rem 0.75rem;
+            font-size: 0.8rem;
+            color: #334155;
         }
 
-        .skill-chip:hover { background: var(--dark); color: var(--white); border-color: var(--dark); }
+        .contact-panel h3 {
+            font-family: var(--font-logo);
+            font-size: 1.3rem;
+            margin-bottom: 0.3rem;
+        }
 
-        .contact-links { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+        .contact-panel p {
+            color: var(--gray);
+            margin-bottom: 1rem;
+        }
 
         .contact-link {
-            display: inline-flex; align-items: center; gap: 0.5rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
             text-decoration: none;
-            font-size: 0.78rem; font-weight: 600;
-            letter-spacing: 0.08em; text-transform: uppercase;
-            color: var(--dark); border: 1px solid #D0D0D0;
-            padding: 0.55rem 1rem; border-radius: 3px;
-            transition: background 0.2s, color 0.2s, border-color 0.2s, gap 0.2s;
+            border: 1px solid var(--light-gray);
+            border-radius: 10px;
+            padding: 0.7rem 0.9rem;
+            background: var(--white);
+            font-weight: 600;
+            font-size: 0.85rem;
         }
 
-        .contact-link:hover { background: var(--accent); color: var(--white); border-color: var(--accent); gap: 0.75rem; }
-
-        /* â”€â”€ FOOTER â”€â”€ */
         footer {
-            background: var(--dark);
-            color: rgba(255,255,255,0.3);
+            padding: 1.5rem 2rem 2rem;
             text-align: center;
-            padding: 1.5rem 2rem;
-            font-size: 0.78rem;
-            letter-spacing: 0.06em;
+            color: var(--gray);
+            font-size: 0.85rem;
         }
 
-        footer strong { color: rgba(255,255,255,0.6); font-weight: 500; }
-        footer .footer-dot { margin: 0 0.5rem; opacity: 0.3; }
+        @media (max-width: 900px) {
+            .hero-inner,
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
 
-        /* â”€â”€ RESPONSIVE â”€â”€ */
-        @media (max-width: 820px) {
-            .profile-grid { grid-template-columns: 1fr; }
-            .avatar-wrap { max-width: 180px; }
         }
 
         @media (max-width: 640px) {
-            nav { padding: 0 1.25rem; }
-            .section-wrap { width: 92%; }
+            nav,
+            .hero {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+
+            .nav-link {
+                display: none;
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- NAV -->
     <nav>
         <div class="logo">
-            <span class="logo-name">CROMPTON LABS<span class="logo-dot">.</span></span>
-            <span class="logo-tagline">Deliberately Different</span>
+            <span class="logo-name">CROMPTON LABS</span>
+            <span class="logo-tagline">Engineering apps that save time</span>
         </div>
+        <a href="#contact" class="nav-link">Contact</a>
     </nav>
 
-    <!-- HERO -->
     <section class="hero">
-        <div class="hero-badge">Engineering Solutions</div>
-        <h1>Civil &amp; Traffic<br><em>Engineering Apps</em></h1>
-        <p class="hero-sub">Purpose-built tools to accelerate assessments, automate reports, and streamline project delivery.</p>
+        <div class="hero-inner">
+            <div>
+                <div class="eyebrow">Civil &amp; Traffic Engineering</div>
+                <h1>Simple tools for <span>better engineering delivery</span></h1>
+                <p>Purpose-built applications for traffic assessment, road safety, reporting, and quality assurance—designed to reduce manual work and improve consistency.</p>
+                <div class="hero-actions">
+                    <a href="#apps" class="btn">Explore Apps <i class="fa-solid fa-arrow-right fa-xs"></i></a>
+                    <a href="#about" class="btn-secondary">About Sanju</a>
+                </div>
+            </div>
+
+            <div class="hero-panel">
+                <h3>Why this works</h3>
+                <div class="hero-points">
+                    <div class="hero-point"><i class="fa-solid fa-circle-check"></i><span>Focused tools built around real project workflows</span></div>
+                    <div class="hero-point"><i class="fa-solid fa-bolt"></i><span>Faster assessments, clearer outputs, less admin time</span></div>
+                    <div class="hero-point"><i class="fa-solid fa-certificate"></i><span>Created by a practicing civil and traffic engineer</span></div>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <!-- TAB BAR -->
-    <div class="tab-bar">
-        <button class="tab-btn active" data-tab="apps">Applications</button>
-        <button class="tab-btn" data-tab="about">About</button>
-    </div>
+    <section class="section-wrap" id="apps">
+        <div class="section-label">Applications</div>
+        <h2 class="section-heading">Tools that solve practical problems</h2>
+        <p class="section-intro">Each app is designed to make engineering tasks quicker, more repeatable, and easier to review.</p>
 
-    <!-- TAB: APPLICATIONS -->
-    <div class="tab-panel active" id="tab-apps">
-        <div class="section-wrap">
-            <div class="section-label">Applications</div>
-            <div class="cards-grid">
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-icon"><i class="fa-solid fa-chart-line"></i></div>
+                <div class="card-meta"><span class="card-tag">Traffic</span></div>
+                <h2>Traffic Impact Assessment</h2>
+                <p>Streamlines volume analysis, trip generation, and report preparation.</p>
+                <a href="https://cromptonconcepts.github.io/Cromton-Traffic-Impact-Asssessment/" class="btn" target="_blank" rel="noopener">Open App <i class="fa-solid fa-arrow-right fa-xs"></i></a>
+            </div>
 
-                <div class="card">
-                    <div class="card-icon"><i class="fa-solid fa-chart-line"></i></div>
-                    <div class="card-tag">Traffic Engineering</div>
-                    <h2>Traffic Impact Assessment</h2>
-                    <p>Comprehensive tool for traffic volume analysis, trip generation, and engineering report automation.</p>
-                    <a href="https://cromptonconcepts.github.io/Cromton-Traffic-Impact-Asssessment/" class="btn" target="_blank" rel="noopener">
-                        Launch App <i class="fa-solid fa-arrow-right fa-xs"></i>
-                    </a>
-                </div>
+            <div class="card">
+                <div class="card-icon"><i class="fa-solid fa-comments"></i></div>
+                <div class="card-meta"><span class="card-tag">Knowledge</span><span class="dev-tag">In Progress</span></div>
+                <h2>Ask</h2>
+                <p>An engineering assistant for quick checks, project questions, and knowledge support.</p>
+                <a href="https://cromptonconcepts.github.io/Ask/" class="btn" target="_blank" rel="noopener">Open App <i class="fa-solid fa-arrow-right fa-xs"></i></a>
+            </div>
 
-                <div class="card">
-                    <div class="card-icon"><i class="fa-solid fa-comments"></i></div>
-                    <div class="card-meta">
-                        <div class="card-tag">Knowledge Base</div>
-                        <span class="dev-tag">Under Development</span>
-                    </div>
-                    <h2>Ask</h2>
-                    <p>Interactive engineering assistant for quick project queries, standards checks, and knowledge support.</p>
-                    <a href="https://cromptonconcepts.github.io/Ask/" class="btn" target="_blank" rel="noopener">
-                        Launch App <i class="fa-solid fa-arrow-right fa-xs"></i>
-                    </a>
-                </div>
+            <div class="card">
+                <div class="card-icon"><i class="fa-solid fa-road"></i></div>
+                <div class="card-meta"><span class="card-tag">Planning</span><span class="dev-tag">In Progress</span></div>
+                <h2>TMP Generator</h2>
+                <p>Supports faster preparation of traffic management plans and supporting documents.</p>
+                <a href="https://cromptonconcepts.github.io/TMP_Generator/" class="btn" target="_blank" rel="noopener">Open App <i class="fa-solid fa-arrow-right fa-xs"></i></a>
+            </div>
 
-                <div class="card">
-                    <div class="card-icon"><i class="fa-solid fa-road"></i></div>
-                    <div class="card-meta">
-                        <div class="card-tag">Traffic Management</div>
-                        <span class="dev-tag">Under Development</span>
-                    </div>
-                    <h2>TMP Generator</h2>
-                    <p>Tool for preparing traffic management planning outputs and generating streamlined documentation.</p>
-                    <a href="https://cromptonconcepts.github.io/TMP_Generator/" class="btn" target="_blank" rel="noopener">
-                        Launch App <i class="fa-solid fa-arrow-right fa-xs"></i>
-                    </a>
-                </div>
+            <div class="card">
+                <div class="card-icon"><i class="fa-solid fa-scale-balanced"></i></div>
+                <div class="card-meta"><span class="card-tag">Assessment</span><span class="dev-tag">In Progress</span></div>
+                <h2>Option Analysis</h2>
+                <p>Compares alternatives in a clear, structured way to support better decisions.</p>
+                <a href="https://cromptonconcepts.github.io/Option_Analysis/" class="btn" target="_blank" rel="noopener">Open App <i class="fa-solid fa-arrow-right fa-xs"></i></a>
+            </div>
 
-                <div class="card">
-                    <div class="card-icon"><i class="fa-solid fa-scale-balanced"></i></div>
-                    <div class="card-meta">
-                        <div class="card-tag">Assessment Tools</div>
-                        <span class="dev-tag">Under Development</span>
-                    </div>
-                    <h2>Option Analysis</h2>
-                    <p>Structured comparison tool to assess alternatives and support transparent engineering decisions.</p>
-                    <a href="https://cromptonconcepts.github.io/Option_Analysis/" class="btn" target="_blank" rel="noopener">
-                        Launch App <i class="fa-solid fa-arrow-right fa-xs"></i>
-                    </a>
-                </div>
+            <div class="card">
+                <div class="card-icon"><i class="fa-solid fa-clipboard-check"></i></div>
+                <div class="card-meta"><span class="card-tag">QA</span></div>
+                <h2>Review App</h2>
+                <p>Improves internal review workflows for documentation and quality assurance.</p>
+                <a href="https://cromptonconcepts.github.io/Review_app/" class="btn" target="_blank" rel="noopener">Open App <i class="fa-solid fa-arrow-right fa-xs"></i></a>
+            </div>
 
-                <div class="card">
-                    <div class="card-icon"><i class="fa-solid fa-clipboard-check"></i></div>
-                    <div class="card-tag">Quality Assurance</div>
-                    <h2>Review App</h2>
-                    <p>Internal review management system for engineering documentation and quality assurance processes.</p>
-                    <a href="https://cromptonconcepts.github.io/Review_app/" class="btn" target="_blank" rel="noopener">
-                        Launch App <i class="fa-solid fa-arrow-right fa-xs"></i>
-                    </a>
-                </div>
+            <div class="card">
+                <div class="card-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                <div class="card-meta"><span class="card-tag">Safety</span></div>
+                <h2>Risk Assessment</h2>
+                <p>Helps identify hazards, document controls, and maintain project risk registers.</p>
+                <a href="https://cromptonconcepts.github.io/Risk-Assessment/" class="btn" target="_blank" rel="noopener">Open App <i class="fa-solid fa-arrow-right fa-xs"></i></a>
+            </div>
 
-                <div class="card">
-                    <div class="card-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
-                    <div class="card-tag">Safety</div>
-                    <h2>Risk Assessment</h2>
-                    <p>Specialized tool for identifying hazards, tracking controls, and preparing risk-based project registers.</p>
-                    <a href="https://cromptonconcepts.github.io/Risk-Assessment/" class="btn" target="_blank" rel="noopener">
-                        Launch App <i class="fa-solid fa-arrow-right fa-xs"></i>
-                    </a>
-                </div>
-
-                <div class="card">
-                    <div class="card-icon"><i class="fa-solid fa-shield-halved"></i></div>
-                    <div class="card-tag">Design</div>
-                    <h2>Barrier Design</h2>
-                    <p>Design support app for barrier layouts, roadside protection concepts, and related engineering checks.</p>
-                    <a href="https://cromptonconcepts.github.io/Barrier-design/" class="btn" target="_blank" rel="noopener">
-                        Launch App <i class="fa-solid fa-arrow-right fa-xs"></i>
-                    </a>
-                </div>
-
+            <div class="card">
+                <div class="card-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                <div class="card-meta"><span class="card-tag">Design</span></div>
+                <h2>Barrier Design</h2>
+                <p>Supports safer roadside design with faster concept development and checks.</p>
+                <a href="https://cromptonconcepts.github.io/Barrier-design/" class="btn" target="_blank" rel="noopener">Open App <i class="fa-solid fa-arrow-right fa-xs"></i></a>
             </div>
         </div>
-    </div>
+    </section>
 
-    <!-- TAB: ABOUT -->
-    <div class="tab-panel" id="tab-about">
-        <div class="section-wrap">
-            <div class="section-label">About the Developer</div>
+    <section class="section-wrap" id="about">
+        <div class="section-label">About</div>
+        <h2 class="section-heading">Built by an engineer, not just for engineers</h2>
+        <p class="section-intro">The goal is simple: reduce repetitive work and make technical delivery more reliable.</p>
 
-            <div class="profile-grid">
-
-                <!-- LEFT -->
-                <div class="profile-left">
-                    <div class="avatar-wrap">
-                        <span class="avatar-initials">SB</span>
-                        <div class="avatar-accent"></div>
-                    </div>
-
-                    <div class="stats-row">
-                        <div class="stat-box">
-                            <div class="stat-num">10+</div>
-                            <div class="stat-label">Years Exp.</div>
-                        </div>
-                        <div class="stat-box">
-                            <div class="stat-num">7</div>
-                            <div class="stat-label">Apps Built</div>
-                        </div>
-                        <div class="stat-box">
-                            <div class="stat-num">RPEQ</div>
-                            <div class="stat-label">36844</div>
-                        </div>
-                        <div class="stat-box">
-                            <div class="stat-num">QLD</div>
-                            <div class="stat-label">Based</div>
-                        </div>
-                    </div>
+        <div class="about-grid">
+            <div class="about-panel">
+                <div class="profile-name">Sanju Bhandari</div>
+                <div class="profile-title">Civil &amp; Traffic Engineer</div>
+                <div class="credential-badge"><i class="fa-solid fa-certificate"></i> RPEQ 36844 • Crompton Concepts</div>
+                <p class="bio">Sanju combines over a decade of hands-on engineering experience with practical software development to create focused applications that improve speed, clarity, and consistency across project delivery.</p>
+                <div class="skills-wrap">
+                    <span class="skill-chip">Traffic Impact Assessment</span>
+                    <span class="skill-chip">Road Safety Audits</span>
+                    <span class="skill-chip">Barrier Design</span>
+                    <span class="skill-chip">Report Automation</span>
+                    <span class="skill-chip">Python</span>
+                    <span class="skill-chip">Web Apps</span>
                 </div>
+            </div>
 
-                <!-- RIGHT -->
-                <div class="profile-right">
-                    <div>
-                        <div class="profile-name">Sanju Bhandari</div>
-                        <div class="profile-title">Civil &amp; Traffic Engineer</div>
-                        <span class="credential-badge">
-                            <i class="fa-solid fa-certificate fa-sm"></i>
-                            RPEQ 36844 &bull; Crompton Concepts
-                        </span>
-                    </div>
-
-                    <p class="bio">
-                        I am a Civil and Traffic Engineer at Crompton Concepts with over a decade of hands-on experience in traffic impact assessment, road safety, and infrastructure design.
-                        Alongside my engineering practice, I design and build all of the applications you see here â€” combining technical rigour with software development
-                        to create purpose-built tools that accelerate assessments, reduce manual effort, and raise the standard of engineering deliverables.
-                    </p>
-
-                    <div class="skills-block">
-                        <h3>Expertise</h3>
-                        <div class="skills-wrap">
-                            <span class="skill-chip">Traffic Impact Assessment</span>
-                            <span class="skill-chip">Road Safety Audits</span>
-                            <span class="skill-chip">Barrier &amp; Safety Design</span>
-                            <span class="skill-chip">SIDRA / VISSIM</span>
-                            <span class="skill-chip">Engineering Report Automation</span>
-                            <span class="skill-chip">Web App Development</span>
-                            <span class="skill-chip">JavaScript / HTML / CSS</span>
-                            <span class="skill-chip">Python</span>
-                            <span class="skill-chip">Quality Assurance</span>
-                        </div>
-                    </div>
-
-                    <div class="contact-block">
-                        <h3>Connect</h3>
-                        <div class="contact-links">
-                            <a href="mailto:er.bhsanju@gmail.com" class="contact-link">
-                                <i class="fa-solid fa-envelope"></i> Email
-                            </a>
-                            <a href="https://www.linkedin.com/in/sanju-bhandari/" class="contact-link" target="_blank" rel="noopener">
-                                <i class="fa-brands fa-linkedin"></i> LinkedIn
-                            </a>
-                            <a href="https://github.com/cromptonconcepts" class="contact-link" target="_blank" rel="noopener">
-                                <i class="fa-brands fa-github"></i> GitHub
-                            </a>
-                        </div>
-                    </div>
-
+            <div class="contact-panel" id="contact">
+                <h3>Connect</h3>
+                <p>If you want to discuss a tool, workflow improvement, or collaboration, get in touch.</p>
+                <div class="contact-links">
+                    <a href="mailto:er.bhsanju@gmail.com" class="contact-link"><i class="fa-solid fa-envelope"></i> Email</a>
+                    <a href="https://www.linkedin.com/in/sanju-bhandari/" class="contact-link" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+                    <a href="https://github.com/cromptonconcepts" class="contact-link" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> GitHub</a>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
-    <!-- FOOTER -->
     <footer>
-        &copy; 2026 <strong>Crompton Concepts</strong>
-        <span class="footer-dot">&bull;</span>
-        Sanju Bhandari
+        &copy; 2026 <strong>Crompton Concepts</strong> • Sanju Bhandari
     </footer>
-
-    <script>
-        document.querySelectorAll('.tab-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-                document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-                btn.classList.add('active');
-                document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
-            });
-        });
-    </script>
 
 </body>
 </html>
