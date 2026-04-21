@@ -398,6 +398,46 @@
 
         }
 
+        /* Tabs Styles */
+        .tabs-nav {
+            max-width: 1120px;
+            width: min(92%, 1120px);
+            margin: 0 auto;
+            display: flex;
+            gap: 0.5rem;
+            border-bottom: 1px solid var(--light-gray);
+            padding: 0 0 0 0;
+        }
+
+        .tab-button {
+            background: none;
+            border: none;
+            border-bottom: 3px solid transparent;
+            padding: 1rem 1.5rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--gray);
+            cursor: pointer;
+            transition: color 0.2s ease, border-color 0.2s ease;
+        }
+
+        .tab-button:hover {
+            color: var(--dark);
+        }
+
+        .tab-button.active {
+            color: var(--accent);
+            border-bottom-color: var(--accent);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
         @media (max-width: 640px) {
             nav,
             .hero {
@@ -407,6 +447,15 @@
 
             .nav-link {
                 display: none;
+            }
+
+            .tabs-nav {
+                padding: 0 1rem;
+            }
+
+            .tab-button {
+                padding: 0.8rem 1rem;
+                font-size: 0.85rem;
             }
         }
     </style>
@@ -428,8 +477,8 @@
                 <h1>Simple tools for <span>better engineering delivery</span></h1>
                 <p>Purpose-built applications for traffic assessment, road safety, reporting, and quality assurance—designed to reduce manual work and improve consistency.</p>
                 <div class="hero-actions">
-                    <a href="#apps" class="btn">Explore Apps <i class="fa-solid fa-arrow-right fa-xs"></i></a>
-                    <a href="#about" class="btn-secondary">About Sanju</a>
+                    <button id="appsTabBtn" class="btn">Explore Apps <i class="fa-solid fa-arrow-right fa-xs"></i></button>
+                    <button id="aboutTabBtn" class="btn-secondary" style="background: none; border: 1px solid rgba(255,255,255,0.2); cursor: pointer;">About the Developer <i class="fa-solid fa-arrow-right fa-xs"></i>button>
                 </div>
             </div>
 
@@ -444,114 +493,157 @@
         </div>
     </section>
 
-    <section class="section-wrap" id="apps">
-        <div class="section-label">Applications</div>
-        <h2 class="section-heading">Tools that solve practical problems</h2>
-        <p class="section-intro">Each app is designed to make engineering tasks quicker, more repeatable, and easier to review.</p>
+    <div class="tabs-nav">
+        <button id="tab1Btn" class="tab-button active">Explore Apps</button>
+        <button id="tab2Btn" class="tab-button">About the Developer</button>
+    </div>
 
-        <div class="cards-grid">
-            <div class="card">
-                <div class="card-icon"><i class="fa-solid fa-chart-line"></i></div>
-                <div class="card-meta"><span class="card-tag">Traffic</span></div>
-                <h2>Traffic Impact Assessment</h2>
-                <p>Streamlines volume analysis, trip generation, and report preparation.</p>
-                <a href="https://cromptonconcepts.github.io/Cromton-Traffic-Impact-Asssessment/" class="btn" target="_blank" rel="noopener">Open App <i class="fa-solid fa-arrow-right fa-xs"></i></a>
-            </div>
+    <!-- Tab 1: Explore Apps -->
+    <div id="tab1" class="tab-content active">
+        <section class="section-wrap">
+            <div class="section-label">Applications</div>
+            <h2 class="section-heading">Tools that solve practical problems</h2>
+            <p class="section-intro">Each app is designed to make engineering tasks quicker, more repeatable, and easier to review.</p>
 
-            <div class="card">
-                <div class="card-icon"><i class="fa-solid fa-comments"></i></div>
-                <div class="card-meta"><span class="card-tag">Knowledge</span><span class="dev-tag">In Progress</span></div>
-                <h2>Ask</h2>
-                <p>An engineering assistant for quick checks, project questions, and knowledge support.</p>
-                <a href="https://cromptonconcepts.github.io/Ask/" class="btn" target="_blank" rel="noopener">Open App <i class="fa-solid fa-arrow-right fa-xs"></i></a>
-            </div>
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-icon"><i class="fa-solid fa-chart-line"></i></div>
+                    <div class="card-meta"><span class="card-tag">Traffic</span></div>
+                    <h2>Traffic Impact Assessment</h2>
+                    <p>Streamlines volume analysis, trip generation, and report preparation.</p>
+                    <a href="https://cromptonconcepts.github.io/Cromton-Traffic-Impact-Asssessment/" class="btn" target="_blank" rel="noopener">Open App <i class="fa-solid fa-arrow-right fa-xs"></i></a>
+                </div>
 
-            <div class="card">
-                <div class="card-icon"><i class="fa-solid fa-road"></i></div>
-                <div class="card-meta"><span class="card-tag">Planning</span><span class="dev-tag">In Progress</span></div>
-                <h2>TMP Generator</h2>
-                <p>Supports faster preparation of traffic management plans and supporting documents.</p>
-                <a href="https://cromptonconcepts.github.io/TMP_Generator/" class="btn" target="_blank" rel="noopener">Open App <i class="fa-solid fa-arrow-right fa-xs"></i></a>
-            </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fa-solid fa-comments"></i></div>
+                    <div class="card-meta"><span class="card-tag">Knowledge</span><span class="dev-tag">In Progress</span></div>
+                    <h2>Ask</h2>
+                    <p>An engineering assistant for quick checks, project questions, and knowledge support.</p>
+                    <a href="https://cromptonconcepts.github.io/Ask/" class="btn" target="_blank" rel="noopener">Open App <i class="fa-solid fa-arrow-right fa-xs"></i></a>
+                </div>
 
-            <div class="card">
-                <div class="card-icon"><i class="fa-solid fa-scale-balanced"></i></div>
-                <div class="card-meta"><span class="card-tag">Assessment</span><span class="dev-tag">In Progress</span></div>
-                <h2>Option Analysis</h2>
-                <p>Compares alternatives in a clear, structured way to support better decisions.</p>
-                <a href="https://cromptonconcepts.github.io/Option_Analysis/" class="btn" target="_blank" rel="noopener">Open App <i class="fa-solid fa-arrow-right fa-xs"></i></a>
-            </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fa-solid fa-road"></i></div>
+                    <div class="card-meta"><span class="card-tag">Planning</span><span class="dev-tag">In Progress</span></div>
+                    <h2>TMP Generator</h2>
+                    <p>Supports faster preparation of traffic management plans and supporting documents.</p>
+                    <a href="https://cromptonconcepts.github.io/TMP_Generator/" class="btn" target="_blank" rel="noopener">Open App <i class="fa-solid fa-arrow-right fa-xs"></i></a>
+                </div>
 
-            <div class="card">
-                <div class="card-icon"><i class="fa-solid fa-clipboard-check"></i></div>
-                <div class="card-meta"><span class="card-tag">QA</span></div>
-                <h2>Review App</h2>
-                <p>Improves internal review workflows for documentation and quality assurance.</p>
-                <a href="https://cromptonconcepts.github.io/Review_app/" class="btn" target="_blank" rel="noopener">Open App <i class="fa-solid fa-arrow-right fa-xs"></i></a>
-            </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fa-solid fa-scale-balanced"></i></div>
+                    <div class="card-meta"><span class="card-tag">Assessment</span><span class="dev-tag">In Progress</span></div>
+                    <h2>Option Analysis</h2>
+                    <p>Compares alternatives in a clear, structured way to support better decisions.</p>
+                    <a href="https://cromptonconcepts.github.io/Option_Analysis/" class="btn" target="_blank" rel="noopener">Open App <i class="fa-solid fa-arrow-right fa-xs"></i></a>
+                </div>
 
-            <div class="card">
-                <div class="card-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
-                <div class="card-meta"><span class="card-tag">Safety</span></div>
-                <h2>Risk Assessment</h2>
-                <p>Helps identify hazards, document controls, and maintain project risk registers.</p>
-                <a href="https://cromptonconcepts.github.io/Risk-Assessment/" class="btn" target="_blank" rel="noopener">Open App <i class="fa-solid fa-arrow-right fa-xs"></i></a>
-            </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fa-solid fa-clipboard-check"></i></div>
+                    <div class="card-meta"><span class="card-tag">QA</span></div>
+                    <h2>Review App</h2>
+                    <p>Improves internal review workflows for documentation and quality assurance.</p>
+                    <a href="https://cromptonconcepts.github.io/Review_app/" class="btn" target="_blank" rel="noopener">Open App <i class="fa-solid fa-arrow-right fa-xs"></i></a>
+                </div>
 
-            <div class="card">
-                <div class="card-icon"><i class="fa-solid fa-shield-halved"></i></div>
-                <div class="card-meta"><span class="card-tag">Design</span></div>
-                <h2>Barrier Design</h2>
-                <p>Supports safer roadside design with faster concept development and checks.</p>
-                <a href="https://cromptonconcepts.github.io/Barrier-design/" class="btn" target="_blank" rel="noopener">Open App <i class="fa-solid fa-arrow-right fa-xs"></i></a>
-            </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                    <div class="card-meta"><span class="card-tag">Safety</span></div>
+                    <h2>Risk Assessment</h2>
+                    <p>Helps identify hazards, document controls, and maintain project risk registers.</p>
+                    <a href="https://cromptonconcepts.github.io/Risk-Assessment/" class="btn" target="_blank" rel="noopener">Open App <i class="fa-solid fa-arrow-right fa-xs"></i></a>
+                </div>
 
-            <div class="card">
-                <div class="card-icon"><i class="fa-solid fa-list-check"></i></div>
-                <div class="card-meta"><span class="card-tag">Planning</span></div>
-                <h2>Constraints &amp; Impacts</h2>
-                <p>Captures and formats constraints and impacts registers ready for CTMP submission.</p>
-                <a href="https://cromptonconcepts.github.io/Constraints-Impacts/" class="btn" target="_blank" rel="noopener">Open App <i class="fa-solid fa-arrow-right fa-xs"></i></a>
-            </div>
-        </div>
-    </section>
+                <div class="card">
+                    <div class="card-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                    <div class="card-meta"><span class="card-tag">Design</span></div>
+                    <h2>Barrier Design</h2>
+                    <p>Supports safer roadside design with faster concept development and checks.</p>
+                    <a href="https://cromptonconcepts.github.io/Barrier-design/" class="btn" target="_blank" rel="noopener">Open App <i class="fa-solid fa-arrow-right fa-xs"></i></a>
+                </div>
 
-    <section class="section-wrap" id="about">
-        <div class="section-label">About</div>
-        <h2 class="section-heading">Built by an engineer, not just for engineers</h2>
-        <p class="section-intro">The goal is simple: reduce repetitive work and make technical delivery more reliable.</p>
-
-        <div class="about-grid">
-            <div class="about-panel">
-                <div class="profile-name">Sanju Bhandari</div>
-                <div class="profile-title">Civil &amp; Traffic Engineer</div>
-                <div class="credential-badge"><i class="fa-solid fa-certificate"></i> RPEQ 36844 • Crompton Concepts</div>
-                <p class="bio">Sanju combines over a decade of hands-on engineering experience with practical software development to create focused applications that improve speed, clarity, and consistency across project delivery.</p>
-                <div class="skills-wrap">
-                    <span class="skill-chip">Traffic Impact Assessment</span>
-                    <span class="skill-chip">Road Safety Audits</span>
-                    <span class="skill-chip">Barrier Design</span>
-                    <span class="skill-chip">Report Automation</span>
-                    <span class="skill-chip">Python</span>
-                    <span class="skill-chip">Web Apps</span>
+                <div class="card">
+                    <div class="card-icon"><i class="fa-solid fa-list-check"></i></div>
+                    <div class="card-meta"><span class="card-tag">Planning</span></div>
+                    <h2>Constraints &amp; Impacts</h2>
+                    <p>Captures and formats constraints and impacts registers ready for CTMP submission.</p>
+                    <a href="https://cromptonconcepts.github.io/Constraints-Impacts/" class="btn" target="_blank" rel="noopener">Open App <i class="fa-solid fa-arrow-right fa-xs"></i></a>
                 </div>
             </div>
+        </section>
+    </div>
 
-            <div class="contact-panel" id="contact">
-                <h3>Connect</h3>
-                <p>If you want to discuss a tool, workflow improvement, or collaboration, get in touch.</p>
-                <div class="contact-links">
-                    <a href="mailto:er.bhsanju@gmail.com" class="contact-link"><i class="fa-solid fa-envelope"></i> Email</a>
-                    <a href="https://www.linkedin.com/in/sanju-bhandari/" class="contact-link" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
-                    <a href="https://github.com/cromptonconcepts" class="contact-link" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> GitHub</a>
+    <!-- Tab 2: About the Developer -->
+    <div id="tab2" class="tab-content">
+        <section class="section-wrap">
+            <div class="section-label">About</div>
+            <h2 class="section-heading">Built by an engineer, not just for engineers</h2>
+            <p class="section-intro">The goal is simple: reduce repetitive work and make technical delivery more reliable.</p>
+
+            <div class="about-grid">
+                <div class="about-panel">
+                    <div class="profile-name">Sanju Bhandari</div>
+                    <div class="profile-title">Civil &amp; Traffic Engineer</div>
+                    <div class="credential-badge"><i class="fa-solid fa-certificate"></i> RPEQ 36844 • Crompton Concepts</div>
+                    <p class="bio">Sanju combines over a decade of hands-on engineering experience with practical software development to create focused applications that improve speed, clarity, and consistency across project delivery.</p>
+                    <div class="skills-wrap">
+                        <span class="skill-chip">Traffic Impact Assessment</span>
+                        <span class="skill-chip">Road Safety Audits</span>
+                        <span class="skill-chip">Barrier Design</span>
+                        <span class="skill-chip">Report Automation</span>
+                        <span class="skill-chip">Python</span>
+                        <span class="skill-chip">Web Apps</span>
+                    </div>
+                </div>
+
+                <div class="contact-panel" id="contact">
+                    <h3>Connect</h3>
+                    <p>If you want to discuss a tool, workflow improvement, or collaboration, get in touch.</p>
+                    <div class="contact-links">
+                        <a href="mailto:er.bhsanju@gmail.com" class="contact-link"><i class="fa-solid fa-envelope"></i> Email</a>
+                        <a href="https://www.linkedin.com/in/sanju-bhandari/" class="contact-link" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+                        <a href="https://github.com/cromptonconcepts" class="contact-link" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> GitHub</a>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </div>
 
     <footer>
         &copy; 2026 <strong>Crompton Concepts</strong> • Sanju Bhandari
     </footer>
+
+    <script>
+        const tab1Btn = document.getElementById('tab1Btn');
+        const tab2Btn = document.getElementById('tab2Btn');
+        const appsTabBtn = document.getElementById('appsTabBtn');
+        const aboutTabBtn = document.getElementById('aboutTabBtn');
+        const tab1 = document.getElementById('tab1');
+        const tab2 = document.getElementById('tab2');
+
+        function activateTab(tabNum) {
+            // Hide all tabs
+            tab1.classList.remove('active');
+            tab2.classList.remove('active');
+            tab1Btn.classList.remove('active');
+            tab2Btn.classList.remove('active');
+
+            // Show selected tab
+            if (tabNum === 1) {
+                tab1.classList.add('active');
+                tab1Btn.classList.add('active');
+            } else {
+                tab2.classList.add('active');
+                tab2Btn.classList.add('active');
+            }
+        }
+
+        // Tab button click handlers
+        tab1Btn.addEventListener('click', () => activateTab(1));
+        tab2Btn.addEventListener('click', () => activateTab(2));
+        appsTabBtn.addEventListener('click', () => activateTab(1));
+        aboutTabBtn.addEventListener('click', () => activateTab(2));
+    </script>
 
 </body>
 </html>
