@@ -241,6 +241,45 @@
             color: var(--dark);
         }
 
+        .apps-collapsible {
+            border: 1px solid var(--light-gray);
+            border-radius: 14px;
+            background: var(--white);
+            padding: 0.85rem;
+        }
+
+        .apps-collapsible summary {
+            list-style: none;
+            cursor: pointer;
+            font-family: var(--font-logo);
+            font-size: 1.2rem;
+            letter-spacing: -0.01em;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.75rem;
+        }
+
+        .apps-collapsible summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .apps-collapsible summary::after {
+            content: '+';
+            font-family: var(--font-body);
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        .apps-collapsible[open] summary::after {
+            content: '-';
+        }
+
+        .apps-collapsible .cards-grid {
+            margin-top: 1rem;
+        }
+
         .card {
             background: var(--white);
             border: 1px solid var(--light-gray);
@@ -518,85 +557,86 @@
             <p class="section-intro">Each app is designed to make engineering tasks quicker, more repeatable, and easier to review.</p>
 
             <div class="apps-group">
-                <h3 class="apps-group-title">Under development</h3>
                 <div class="cards-grid">
                     <div class="card">
-                        <div class="card-icon"><i class="fa-solid fa-comments"></i></div>
-                        <div class="card-meta"><span class="card-tag">Knowledge</span><span class="dev-tag">Under development</span></div>
-                        <h2>Ask</h2>
-                        <p>An engineering assistant for quick checks, project questions, and knowledge support.</p>
-                        <a href="https://cromptonconcepts.github.io/Ask/" class="btn" target="_blank" rel="noopener">Open App <i class="fa-solid fa-arrow-right fa-xs"></i></a>
+                        <div class="card-icon"><i class="fa-solid fa-chart-line"></i></div>
+                        <div class="card-meta"><span class="card-tag">Traffic</span></div>
+                        <h2>Traffic Impact Assessment</h2>
+                        <p>Streamlines volume analysis, trip generation, and report preparation.</p>
+                        <a href="https://cromptonconcepts.github.io/Cromton-Traffic-Impact-Asssessment/" class="btn" target="_blank" rel="noopener">Open App <i class="fa-solid fa-arrow-right fa-xs"></i></a>
                     </div>
 
                     <div class="card">
-                        <div class="card-icon"><i class="fa-solid fa-road"></i></div>
-                        <div class="card-meta"><span class="card-tag">Planning</span><span class="dev-tag">Under development</span></div>
-                        <h2>TMP Generator</h2>
-                        <p>Supports faster preparation of traffic management plans and supporting documents.</p>
-                        <a href="https://cromptonconcepts.github.io/TMP_Generator/" class="btn" target="_blank" rel="noopener">Open App <i class="fa-solid fa-arrow-right fa-xs"></i></a>
+                        <div class="card-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                        <div class="card-meta"><span class="card-tag">Safety</span></div>
+                        <h2>Risk Assessment</h2>
+                        <p>Helps identify hazards, document controls, and maintain project risk registers.</p>
+                        <a href="https://cromptonconcepts.github.io/Risk-Assessment/" class="btn" target="_blank" rel="noopener">Open App <i class="fa-solid fa-arrow-right fa-xs"></i></a>
                     </div>
 
                     <div class="card">
-                        <div class="card-icon"><i class="fa-solid fa-scale-balanced"></i></div>
-                        <div class="card-meta"><span class="card-tag">Assessment</span><span class="dev-tag">Under development</span></div>
-                        <h2>Option Analysis</h2>
-                        <p>Compares alternatives in a clear, structured way to support better decisions.</p>
-                        <a href="https://cromptonconcepts.github.io/Option_Analysis/" class="btn" target="_blank" rel="noopener">Open App <i class="fa-solid fa-arrow-right fa-xs"></i></a>
+                        <div class="card-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                        <div class="card-meta"><span class="card-tag">Design</span></div>
+                        <h2>Barrier Design</h2>
+                        <p>Supports safer roadside design with faster concept development and checks.</p>
+                        <a href="https://cromptonconcepts.github.io/Barrier-design/" class="btn" target="_blank" rel="noopener">Open App <i class="fa-solid fa-arrow-right fa-xs"></i></a>
                     </div>
                 </div>
             </div>
 
             <div class="apps-group">
-                <h3 class="apps-group-title">Completed</h3>
-                <div class="cards-grid">
+                <details class="apps-collapsible">
+                    <summary>Under development</summary>
+                    <div class="cards-grid">
                 <div class="card">
-                    <div class="card-icon"><i class="fa-solid fa-chart-line"></i></div>
-                    <div class="card-meta"><span class="card-tag">Traffic</span></div>
-                    <h2>Traffic Impact Assessment</h2>
-                    <p>Streamlines volume analysis, trip generation, and report preparation.</p>
-                    <a href="https://cromptonconcepts.github.io/Cromton-Traffic-Impact-Asssessment/" class="btn" target="_blank" rel="noopener">Open App <i class="fa-solid fa-arrow-right fa-xs"></i></a>
+                    <div class="card-icon"><i class="fa-solid fa-comments"></i></div>
+                    <div class="card-meta"><span class="card-tag">Knowledge</span><span class="dev-tag">Under development</span></div>
+                    <h2>Ask</h2>
+                    <p>An engineering assistant for quick checks, project questions, and knowledge support.</p>
+                    <a href="https://cromptonconcepts.github.io/Ask/" class="btn" target="_blank" rel="noopener">Open App <i class="fa-solid fa-arrow-right fa-xs"></i></a>
                 </div>
 
                 <div class="card">
-                    <div class="card-icon"><i class="fa-solid fa-graduation-cap"></i></div>
-                    <div class="card-meta"><span class="card-tag">Training</span></div>
-                    <h2>Planners Training</h2>
-                    <p>Provides practical planner training resources in a simple, easy-to-use app format.</p>
-                    <a href="https://crompton-concepts.github.io/Planners-Training/" class="btn" target="_blank" rel="noopener">Open App <i class="fa-solid fa-arrow-right fa-xs"></i></a>
+                    <div class="card-icon"><i class="fa-solid fa-road"></i></div>
+                    <div class="card-meta"><span class="card-tag">Planning</span><span class="dev-tag">Under development</span></div>
+                    <h2>TMP Generator</h2>
+                    <p>Supports faster preparation of traffic management plans and supporting documents.</p>
+                    <a href="https://cromptonconcepts.github.io/TMP_Generator/" class="btn" target="_blank" rel="noopener">Open App <i class="fa-solid fa-arrow-right fa-xs"></i></a>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon"><i class="fa-solid fa-scale-balanced"></i></div>
+                    <div class="card-meta"><span class="card-tag">Assessment</span><span class="dev-tag">Under development</span></div>
+                    <h2>Option Analysis</h2>
+                    <p>Compares alternatives in a clear, structured way to support better decisions.</p>
+                    <a href="https://cromptonconcepts.github.io/Option_Analysis/" class="btn" target="_blank" rel="noopener">Open App <i class="fa-solid fa-arrow-right fa-xs"></i></a>
                 </div>
 
                 <div class="card">
                     <div class="card-icon"><i class="fa-solid fa-clipboard-check"></i></div>
-                    <div class="card-meta"><span class="card-tag">QA</span></div>
+                    <div class="card-meta"><span class="card-tag">QA</span><span class="dev-tag">Under development</span></div>
                     <h2>Review App</h2>
                     <p>Improves internal review workflows for documentation and quality assurance.</p>
                     <a href="https://cromptonconcepts.github.io/Review_app/" class="btn" target="_blank" rel="noopener">Open App <i class="fa-solid fa-arrow-right fa-xs"></i></a>
                 </div>
 
                 <div class="card">
-                    <div class="card-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
-                    <div class="card-meta"><span class="card-tag">Safety</span></div>
-                    <h2>Risk Assessment</h2>
-                    <p>Helps identify hazards, document controls, and maintain project risk registers.</p>
-                    <a href="https://cromptonconcepts.github.io/Risk-Assessment/" class="btn" target="_blank" rel="noopener">Open App <i class="fa-solid fa-arrow-right fa-xs"></i></a>
-                </div>
-
-                <div class="card">
-                    <div class="card-icon"><i class="fa-solid fa-shield-halved"></i></div>
-                    <div class="card-meta"><span class="card-tag">Design</span></div>
-                    <h2>Barrier Design</h2>
-                    <p>Supports safer roadside design with faster concept development and checks.</p>
-                    <a href="https://cromptonconcepts.github.io/Barrier-design/" class="btn" target="_blank" rel="noopener">Open App <i class="fa-solid fa-arrow-right fa-xs"></i></a>
-                </div>
-
-                <div class="card">
                     <div class="card-icon"><i class="fa-solid fa-list-check"></i></div>
-                    <div class="card-meta"><span class="card-tag">Planning</span></div>
+                    <div class="card-meta"><span class="card-tag">Planning</span><span class="dev-tag">Under development</span></div>
                     <h2>Constraints &amp; Impacts</h2>
                     <p>Captures and formats constraints and impacts registers ready for CTMP submission.</p>
                     <a href="https://cromptonconcepts.github.io/Constraints-Impacts/" class="btn" target="_blank" rel="noopener">Open App <i class="fa-solid fa-arrow-right fa-xs"></i></a>
                 </div>
-            </div>
+
+                <div class="card">
+                    <div class="card-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+                    <div class="card-meta"><span class="card-tag">Training</span><span class="dev-tag">Under development</span></div>
+                    <h2>Planners Training</h2>
+                    <p>Provides practical planner training resources in a simple, easy-to-use app format.</p>
+                    <a href="https://crompton-concepts.github.io/Planners-Training/" class="btn" target="_blank" rel="noopener">Open App <i class="fa-solid fa-arrow-right fa-xs"></i></a>
+                </div>
+                    </div>
+                </details>
             </div>
         </section>
     </div>
